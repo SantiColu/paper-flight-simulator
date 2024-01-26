@@ -114,7 +114,6 @@ function App() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    // draw axis
     let frameCount = 0;
 
     let animationFrameId;
