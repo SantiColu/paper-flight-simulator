@@ -119,7 +119,6 @@ function App() {
 
     let animationFrameId;
 
-    //Our draw came here
     ctx.canvas.width = containerRef.current.clientWidth - 20;
     ctx.canvas.height = 700; //containerRef.current.clientHeight;
 
