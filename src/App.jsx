@@ -5,6 +5,8 @@ import Papa from "papaparse";
 
 const l = 30;
 
+// jeje
+
 function drawAxis(ctx, maxX, maxY) {
   const xScale = ctx.canvas.width / maxX;
   const yScale = ctx.canvas.height / maxY;
