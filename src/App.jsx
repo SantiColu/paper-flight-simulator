@@ -86,12 +86,6 @@ function drawAxis(ctx, maxX, maxY) {
   }
 }
 
-// for (let i = 0; i < 1200; i++) {
-//   const y = ((-(1 / 2) * 7 * i) ^ 2) + 5 * i;
-
-//   data.push(y);
-// }
-
 function App() {
   const [data, setData] = useState(null);
   const [file, setFile] = useState(null);
