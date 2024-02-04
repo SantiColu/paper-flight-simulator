@@ -1,8 +1,11 @@
-# React + Vite
+# SIMULADOR AVION DE PAPEL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta pagina fue creada para visualizar de una mejor manera los datos generados por un
+script de matlab creado para el trabajo final de **Introduccion a la programacion y analisis numerico** de la **Universidad Nacional de La Plata**
 
-Currently, two official plugins are available:
+### Como usarla:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Primero debe ejecutarse el script matlab, el cual generara 3 archivos .csv (uno para cada velocidad inicial) con los datos de la simulacion
+- Una vez ya se tengan los .csv, se debe dirigir a la pagina (https://paper-flight-simulator.vercel.app/) y se debe subir el archivo csv
+- Finalmente se debe clickear el boton de **CARGAR** y la animacion comenzara.
+- En caso que se desee cambiar los datos de la animacion se debera clickear el boton de **DETENER** o simplemente refrescar la pagina y cargar un nuevo csv
