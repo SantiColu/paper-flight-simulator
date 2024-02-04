@@ -223,7 +223,7 @@ function App() {
   }, [data]);
 
   return (
-    <>
+    <div className="flex  flex-col min-h-screen justify-between">
       <section className="bg-base-300 flex justify-center py-5">
         <div className="text-primary font-bold text-3xl flex justify-center items-center gap-2">
           <Send size={30} />
@@ -231,63 +231,79 @@ function App() {
           <Send size={30} />
         </div>
       </section>
+      <div className="flex-grow">
+        <section className="flex items-center  justify-center mt-3">
+          <div className="max-w-7xl bg-base-200  w-full border-2 border-gray-600 rounded-md p-2 flex justify-center items-center h-20">
+            {data ? (
+              <div
+                onClick={() => setData(null)}
+                className="btn btn-error btn-wide"
+              >
+                DETENER SIMULACION
+              </div>
+            ) : (
+              <>
+                <input
+                  className="csv-input"
+                  type="file"
+                  name="file"
+                  placeholder={null}
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+                {file && (
+                  <div
+                    onClick={() =>
+                      Papa.parse(file, {
+                        skipEmptyLines: true,
+                        complete: (v) => {
+                          setFile(null);
+                          setData({
+                            t: v.data
+                              .map((d) => d[0])
+                              .map((d) => parseFloat(d)),
+                            v: v.data
+                              .map((d) => d[1])
+                              .map((d) => parseFloat(d)),
+                            y: v.data
+                              .map((d) => d[2])
+                              .map((d) => parseFloat(d)),
+                            h: v.data
+                              .map((d) => d[3])
+                              .map((d) => parseFloat(d)),
+                            x: v.data
+                              .map((d) => d[4])
+                              .map((d) => parseFloat(d)),
+                          });
+                        },
+                        header: false,
+                      })
+                    }
+                    className="btn btn-primary"
+                  >
+                    CARGAR
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </section>
 
-      <section className="flex items-center  justify-center mt-10">
-        <div className="max-w-7xl bg-base-200  w-full border-2 border-gray-600 rounded-md p-2 flex justify-center items-center h-20">
-          {data ? (
-            <div
-              onClick={() => setData(null)}
-              className="btn btn-error btn-wide"
-            >
-              STOP
-            </div>
-          ) : (
-            <>
-              <input
-                className="csv-input"
-                type="file"
-                name="file"
-                placeholder={null}
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-              {file && (
-                <div
-                  onClick={() =>
-                    Papa.parse(file, {
-                      skipEmptyLines: true,
-                      complete: (v) => {
-                        setFile(null);
-                        setData({
-                          t: v.data.map((d) => d[0]).map((d) => parseFloat(d)),
-                          v: v.data.map((d) => d[1]).map((d) => parseFloat(d)),
-                          y: v.data.map((d) => d[2]).map((d) => parseFloat(d)),
-                          h: v.data.map((d) => d[3]).map((d) => parseFloat(d)),
-                          x: v.data.map((d) => d[4]).map((d) => parseFloat(d)),
-                        });
-                      },
-                      header: false,
-                    })
-                  }
-                  className="btn btn-primary"
-                >
-                  Load
-                </div>
-              )}
-            </>
-          )}
+        <section className="flex items-center  justify-center my-2">
+          <div
+            hidden={!data}
+            ref={containerRef}
+            className="max-w-7xl bg-base-200  w-full border-2 border-gray-600 rounded-md p-2"
+          >
+            <canvas ref={canvasRef} className="bg-red" />
+          </div>
+        </section>
+      </div>
+      <footer className="min-h-fit w-full bg-base-200 flex justify-center">
+        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-center px-4">
+          Simulador creado para el TP final de IPAN (UNLP)
         </div>
-      </section>
-
-      <section className="flex items-center  justify-center my-2">
-        <div
-          hidden={!data}
-          ref={containerRef}
-          className="max-w-7xl bg-base-200  w-full border-2 border-gray-600 rounded-md p-2"
-        >
-          <canvas ref={canvasRef} className="bg-red" />
-        </div>
-      </section>
-    </>
+      </footer>
+    </div>
   );
 }
 
